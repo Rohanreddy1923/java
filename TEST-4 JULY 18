@@ -1,0 +1,40 @@
+1) ARITHMETIC EXCEPTION PROGRAM
+ public class ArithmeticExceptionExample {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0; // Division by zero
+        } catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero.");
+        }
+    }
+}
+2) CUSTOM EXCEPTION PROGRAM
+  class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+
+public class CustomExceptionExample {
+    public static void main(String[] args) {
+        try {
+            throw new CustomException("Custom Exception Demo");
+        } catch (CustomException e) {
+            System.out.println("Custom Exception caught: " + e.getMessage());
+        }
+    }
+}
+3) HANDLING ARRAY INDEXOUTOFBOUNDS EXCEPTION
+  public class ArrayExceptionExample {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3};
+        try {
+            System.out.println(numbers[5]); // Accessing index out of bounds
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Index out of bounds.");
+        }
+    }
+}
+
+
+
