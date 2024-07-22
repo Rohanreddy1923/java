@@ -1,0 +1,59 @@
+PROGRAM 1 
+import java.util.Scanner;
+
+public class DaysConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of days: ");
+        int days = scanner.nextInt();
+
+        int years = days / 365;
+        int weeks = (days % 365) / 7;
+        int remainingDays = (days % 365) % 7;
+
+        System.out.println(days + " days is approximately " + years + " years, " + weeks + " weeks, and " + remainingDays + " days.");
+    }
+}
+PROGRAM 2
+public class UserCount {
+    public static void main(String[] args) {
+        int totalUsers = 100; // Example total users
+        int staffUsers = 70; // Example staff users
+
+        // Calculate the number of non-teaching staff users
+        int nonTeachingStaff = staffUsers / 3;
+
+        // Calculate the number of student users
+        int studentUsers = totalUsers - staffUsers - nonTeachingStaff;
+
+        System.out.println("Number of Student Users: " + studentUsers);
+    }
+}
+PROGRAM 3
+public class PrimeNumbers {
+    public static void main(String[] args) {
+        int n = 10; // Number of prime numbers to print
+        int count = 0;
+        int num = 2; // Starting from the first prime number
+
+        while (count < n) {
+            if (isPrime(num)) {
+                System.out.print(num + " ");
+                count++;
+            }
+            num++;
+        }
+    }
+
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
