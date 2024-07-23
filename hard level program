@@ -1,0 +1,241 @@
+PROGRAM 1
+import java.util.Scanner;
+
+public class DaysConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of days: ");
+        int days = scanner.nextInt();
+
+        int years = days / 365;
+        int weeks = (days % 365) / 7;
+        int remainingDays = (days % 365) % 7;
+
+        System.out.println(days + " days is approximately " + years + " years, " + weeks + " weeks, and " + remainingDays + " days.");
+    }
+}
+PRPGRAM 2 
+  public class UserCount {
+    public static void main(String[] args) {
+        int totalUsers = 100; // Example total users
+        int staffUsers = 70; // Example staff users
+
+        // Calculate the number of non-teaching staff users
+        int nonTeachingStaff = staffUsers / 3;
+
+        // Calculate the number of student users
+        int studentUsers = totalUsers - staffUsers - nonTeachingStaff;
+
+        System.out.println("Number of Student Users: " + studentUsers);
+    }
+}
+PROGRAM 3
+  import java.util.Scanner;
+
+public class FactorCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+        
+        int factors = 0;
+        System.out.print("Factors of " + number + ": ");
+        for (int i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                factors++;
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println("\nTotal number of factors: " + factors);
+        
+        System.out.print("Enter the value of 'n' to find the nth factor: ");
+        int n = scanner.nextInt();
+        
+        int count = 0;
+        for (int i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                count++;
+                if (count == n) {
+                    System.out.println("The " + n + "th factor is: " + i);
+                    break;
+                }
+            }
+        }
+    }
+}
+PROGRAM 4
+  public class PrimeNumbers {
+    public static void main(String[] args) {
+        int n = 10; // Number of prime numbers to print
+        int count = 0;
+        int num = 2; // Starting from the first prime number
+
+        while (count < n) {
+            if (isPrime(num)) {
+                System.out.print(num + " ");
+                count++;
+            }
+            num++;
+        }
+    }
+
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+PROGRAM 5
+  public class PerfectSquaresWithDigitSumLessThanTen {
+    public static void main(String[] args) {
+        int startRange = 1;
+        int endRange = 100;
+
+        for (int i = startRange; i <= endRange; i++) {
+            if (isPerfectSquare(i) && digitSumLessThanTen(i)) {
+                System.out.println(i);
+            }
+        }
+    }
+
+    public static boolean isPerfectSquare(int num) {
+        int sqrt = (int) Math.sqrt(num);
+        return (sqrt * sqrt == num);
+    }
+
+    public static boolean digitSumLessThanTen(int num) {
+        int sum = 0;
+        while (num > 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        return sum < 10;
+    }
+}
+PROGRAM 6 import java.util.HashSet;
+
+public class UniquePermutations {
+    static HashSet<String> uniquePermutations = new HashSet<>();
+
+    public static void main(String[] args) {
+        String number = "122";
+        generateUniquePermutations("", number);
+        uniquePermutations.forEach(System.out::println);
+    }
+
+    public static void generateUniquePermutations(String prefix, String remaining) {
+        int n = remaining.length();
+        if (n == 0) {
+            uniquePermutations.add(prefix);
+        } else {
+            for (int i = 0; i < n; i++) {
+                generateUniquePermutations(prefix + remaining.charAt(i), remaining.substring(0, i) + remaining.substring(i + 1, n));
+            }
+        }
+    }
+}
+PROGRAM 7
+  public class Main {
+    public static void main(String[] args) {
+        int number = 5; // Example number
+        int[] numberAndSquare = new int[2];
+        
+        numberAndSquare[0] = number;
+        numberAndSquare[1] = number * number;
+        
+        System.out.println("Number: " + numberAndSquare[0]);
+        System.out.println("Square: " + numberAndSquare[1]);
+    }
+}
+PROGRAM 8
+  public class BankAccount {
+    private double balance;
+
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    public void displayBalance() {
+        System.out.println("Current Balance: $" + balance);
+    }
+
+    public static void main(String[] args) {
+        BankAccount myAccount = new BankAccount(1000.0);
+        myAccount.displayBalance();
+    }
+}
+PROGRAM 9
+  public class ReverseAndAddPalindrome {
+    public static int reverseNumber(int num) {
+        int reversed = 0;
+        while (num != 0) {
+            int digit = num % 10;
+            reversed = reversed * 10 + digit;
+            num /= 10;
+        }
+        return reversed;
+    }
+
+    public static boolean isPalindrome(int num) {
+        return num == reverseNumber(num);
+    }
+
+    public static void main(String[] args) {
+        int number = 195; // Example number
+        int reverse;
+        
+        while (!isPalindrome(number)) {
+            reverse = reverseNumber(number);   
+            System.out.println(number + " + " + reverse + " = " + (number + reverse));
+            number += reverse;
+        }
+        
+        System.out.println("Palindrome reached: " + number);
+    }
+}
+PROGRAM 10
+  class Customer {
+    private int AccountNo;
+    private String AccName;
+    private int Balance;
+
+    public synchronized void deposit(int amount) {
+        Balance += amount;
+        notify(); // Notify waiting threads
+    }
+
+    public synchronized void withdraw(int amount) {
+        if (Balance < amount) {
+            try {
+                wait(); // Suspend thread if balance is insufficient
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Balance -= amount;
+        System.out.println("Withdrawal successful. Remaining balance: " + Balance);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Customer customer = new Customer();
+        
+        // Simulate withdrawal and deposit operations
+        new Thread(() -> {
+            customer.withdraw(50);
+        }).start();
+
+        new Thread(() -> {
+            customer.deposit(100);
+        }).start();
+    }
+}
+
+  
